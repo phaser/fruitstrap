@@ -11,7 +11,7 @@
 
 #define FDVENDOR_PATH  "/tmp/fruitstrap-remote-debugserver"
 #define PREP_CMDS_PATH "/tmp/fruitstrap-gdb-prep-cmds"
-#define GDB_SHELL      "/Developer/Platforms/iPhoneOS.platform/Developer/usr/libexec/gdb/gdb-arm-apple-darwin --arch armv7 -q -x " PREP_CMDS_PATH
+#define GDB_SHELL      "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/libexec/gdb/gdb-arm-apple-darwin --arch armv7 -q -x " PREP_CMDS_PATH
 
 #define PRINT(...) if (!quiet) printf(__VA_ARGS__)
 
@@ -149,6 +149,11 @@ CFStringRef copy_developer_disk_image_path(AMDeviceRef device) {
     }
     if (!found) {
         path = CFStringCreateWithFormat(NULL, NULL, CFSTR("/Developer/Platforms/iPhoneOS.platform/DeviceSupport/Latest/DeveloperDiskImage.dmg"));
+        found = path_exists(path);
+    }
+    if (!found)
+    {
+        path = CFStringCreateWithFormat(NULL, NULL, CFSTR("/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport/6.1 (10B141)/DeveloperDiskImage.dmg"));
         found = path_exists(path);
     }
 
@@ -557,7 +562,7 @@ int main(int argc, char *argv[]) {
     };
 
     char ch;
-    while ((ch = getopt_long(argc, argv, "qvtibda:", global_longopts, NULL)) != -1)
+    while ((ch = getopt_long(argc, argv, "qvtib:da:", global_longopts, NULL)) != -1)
     {
         switch (ch) {
         case 'q':
