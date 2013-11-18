@@ -7,6 +7,17 @@ Install and debug iPhone apps without using Xcode. Designed to work on unjailbro
 * Mac OS X. Tested on Snow Leopard only.
 * You need to have a valid iPhone development certificate installed.
 * Xcode must be installed, along with the SDK for your iOS version.
+* For compilation you need CMake
+
+## Compile
+
+    cmake -DT=fruitstrap -DBUILD=1 -P KRAL/builder.cmake
+
+If you just want to generate the Xcode project:
+    
+    cmake -DT=fruitstrap -DBUILD=1 -P KRAL/builder.cmake
+
+You'll find the project in projects/fruitstrap.
 
 ## Usage
 
@@ -22,13 +33,6 @@ Commands available:
 
 * `list-devices`:
   List all attached devices. 
-
-
-## Demo
-
-* The included demo.app represents the minimum required to get code running on iOS.
-* `make install` will install demo.app to the device.
-* `make debug` will install demo.app and launch a GDB session.
 
 ## Notes
 

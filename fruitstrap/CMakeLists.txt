@@ -5,7 +5,7 @@ SET (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${KRAL_PATH}) # Necessary for all th
 PROJECT (${PROJ_NAME})
 INCLUDE (KRALMain)
 
-build_module(${PROJ_NAME} MACOSX_BUNDLE)
+build_module(${PROJ_NAME})
 
 link_ios_framework(${PROJ_NAME} CoreFoundation)
 link_ios_framework(${PROJ_NAME} MobileDevice "/System/Library/PrivateFrameworks")
